@@ -38,6 +38,8 @@ If you'd rather not run shell scripts, the [Getting Started guide](docs/getting-
 
 **A dashboard** — `dashboard/dashboard.html` is a single-file HTML/JS dashboard. The build script walks your vault, generates JSON, serves it over HTTP, and exposes mutation endpoints for moving cards between kanban columns, editing tasks, and updating the day board. Designed accessibly — the colour palette is red/green colour-blind safe by default.
 
+**A thinking pipeline** — the vault and dashboard treat concepts and projects as first-class objects. You can capture a half-formed idea as a concept, connect it to related notes, attach tasks to it, revisit it over time, and promote it into a project when it becomes concrete. That matters because many useful ideas do not arrive fully shaped. EV gives you a way to keep difficult problems alive, accumulate context around them, see how they relate to other work, and gradually turn them into practical solutions.
+
 **Setup and purge scripts** — `setup.sh` walks you through configuration. `purge-example-data.sh` clears the example content while preserving the structure, ready for your own data.
 
 ## Why this exists
@@ -91,6 +93,8 @@ Everything Vault grew out of a personal knowledge management system built and re
 ## Contributing
 
 Issues and pull requests welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. The principles to keep in mind: stay local-first, stay simple, prefer plain markdown to fancy formats, and treat the user's data with respect.
+
+Please understand the maintainer model: this is a one-person project maintained around a full-time job. I am interested in feedback, bug reports, and ideas, but I cannot promise response times, support, or that every issue will be actioned. If something matters to your workflow, a clear issue or a focused pull request is the best way to make it easy to review when time allows.
 
 ## License
 
