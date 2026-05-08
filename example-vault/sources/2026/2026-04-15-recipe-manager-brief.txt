@@ -1,0 +1,27 @@
+Recipe Manager — v0.2 brief
+===========================
+
+Goal: get the import experience to a state where I would happily ask a
+non-technical friend to install this and use it.
+
+Themes for the release:
+
+1. Import-from-URL polish. The endpoint exists but the error states are
+   ugly. Need clear, distinct messaging for: network failure, 4xx, 5xx,
+   parse failure, and "we got a page but it doesn't look like a recipe."
+2. Duplicate detection. Right now the user can import the same recipe
+   twice and end up with two records. On import we should fingerprint the
+   recipe (title + first three ingredient names) and ask the user before
+   creating a duplicate.
+3. Documentation pass. README is sparse; install guide doesn't exist;
+   contributor notes are out of date. Jordan has offered to lead this.
+
+Out of scope for v0.2:
+- Multi-tenant user model.
+- Meal-planning AI.
+- Mobile-friendly UI redesign.
+
+Target: tag and announce by end of May 2026.
+
+Stretch goal if time allows: a single Docker compose file that makes the
+"five minutes from clone to running" path real.

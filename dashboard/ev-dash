@@ -1,0 +1,92 @@
+#!/bin/bash
+# ev-dash — Build and serve the Everything Vault dashboard
+#
+# Default behaviour: kill any running server, rebuild ev-data.json from
+# the current vault state, start a fresh server in the background, open
+# the browser, and return immediately. Safe to call repeatedly.
+#
+# Usage:
+#   ev-dash               Refresh + serve + open (detached)
+#   ev-dash --stop        Stop running server
+#   ev-dash --foreground  Refresh + serve + open, stay attached (Ctrl-C to stop)
+#   ev-dash --no-open     Refresh + serve, don't open browser
+#
+# Vault path is read from $EV_VAULT_PATH if set, otherwise the script auto-
+# detects the vault by walking upward from this script's location and
+# checking common locations like ~/Documents/everything-vault/vault.
+
+set -e
+
+# Resolve symlinks so "$DIR" is the real dashboard/ folder
+SOURCE="${BASH_SOURCE[0]}"
+while [ -L "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ "$SOURCE" != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+SCRIPT="$DIR/build_dashboard.py"
+LOG="/tmp/ev-dashboard.log"
+URL="http://localhost:8077/dashboard.html"
+
+# Determine vault path
+if [ -n "$EV_VAULT_PATH" ]; then
+  VAULT="$EV_VAULT_PATH"
+else
+  # Try common locations in order
+  for candidate in \
+      "$DIR/../example-vault" \
+      "$DIR/../vault" \
+      "$HOME/Documents/everything-vault/vault" \
+      "$HOME/everything-vault/vault"; do
+    if [ -d "$candidate" ]; then
+      VAULT="$candidate"
+      break
+    fi
+  done
+fi
+
+if [ -z "$VAULT" ]; then
+  echo "ERROR: Could not find vault. Set EV_VAULT_PATH=/path/to/vault" >&2
+  exit 1
+fi
+
+# Pass-through for --stop
+if [ "$1" = "--stop" ]; then
+  python3 "$SCRIPT" --stop
+  exit $?
+fi
+
+# Foreground mode (legacy behaviour) — block on the server
+if [ "$1" = "--foreground" ]; then
+  shift
+  exec python3 "$SCRIPT" --vault "$VAULT" "$@"
+fi
+
+# Default: force a fresh build by stopping any old server, then relaunch detached
+python3 "$SCRIPT" --stop >/dev/null 2>&1 || true
+
+# Relaunch in background, fully detached from this shell
+nohup python3 "$SCRIPT" --vault "$VAULT" >"$LOG" 2>&1 &
+disown
+
+# Give the server a moment to bind the port before opening the browser
+for _ in 1 2 3 4 5 6 7 8 9 10; do
+  if python3 -c "import socket; s=socket.socket(); s.settimeout(0.2); exit(0 if s.connect_ex(('localhost',8077))==0 else 1)" 2>/dev/null; then
+    break
+  fi
+  sleep 0.2
+done
+
+if [ "$1" != "--no-open" ]; then
+  if command -v open >/dev/null 2>&1; then
+    open "$URL"
+  elif command -v xdg-open >/dev/null 2>&1; then
+    xdg-open "$URL"
+  fi
+fi
+
+echo "Everything Vault Dashboard → $URL"
+echo "Vault: $VAULT"
+echo "Log: $LOG"
+echo "Stop with: ev-dash --stop"

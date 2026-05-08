@@ -1,0 +1,21 @@
+vault_name: "Alex Chen's Vault (example)"
+schema_version: "1.0"
+ev_version: "1.0.0"
+created: 2026-01-15
+domains:
+  - concepts
+  - projects
+  - health
+  - finance
+  - hobbies
+  - household
+  - it-setup
+  - work
+  - vehicles
+  - pets
+  - holidays
+  - family
+  - legal
+  - purchases
+  - professional
+note: "Replace this with your own vault information."

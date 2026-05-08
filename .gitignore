@@ -1,0 +1,87 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Virtualenvs
+venv/
+env/
+.venv/
+.env
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+Icon
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Dashboard generated files
+dashboard/ev-data.json
+dashboard/kv-data.json
+/tmp/ev-dashboard-server.pid
+/tmp/ev-dashboard.log
+
+# Vault runtime caches — sibling _cache/ folder (current location)
+**/_cache/consolidation.json
+**/_cache/project-status-proposals.json
+# Legacy in-vault cache locations (still ignored for migration period)
+**/_consolidation-cache.json
+**/_project-status-proposals.json
+
+# User vault (if they keep their personal vault inside the repo — unusual but possible)
+# Users typically point EV_VAULT_PATH at a folder outside the repo, but if not:
+# my-vault/
+
+# Plugin build artefacts
+*.plugin
+*.skill
+
+# Temporary working directories
+_source/
+.tmp/

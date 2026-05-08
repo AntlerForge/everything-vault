@@ -1,0 +1,80 @@
+# LLM Selector — model fitness by use case
+#
+# Fill in 0-10 scores per use case based on your own evaluation.
+# This is a template; the recommendations block below is a starter you
+# should adjust as you build evidence.
+
+meta:
+  last_updated: 2026-05-07
+  scoring_scale: "0-10 (0 = unusable, 5 = passable, 10 = best in class)"
+  scored_by: alex
+  notes: "Personal scoring. Refresh quarterly or after any major model release."
+
+use_cases:
+  - id: creative-writing
+    description: "Long-form prose, fiction, evocative writing"
+  - id: code-generation
+    description: "Writing new code from a description"
+  - id: code-review
+    description: "Reading existing code and surfacing issues"
+  - id: summarisation
+    description: "Condensing a long document into a useful summary"
+  - id: research
+    description: "Open-ended question answering with breadth"
+  - id: planning
+    description: "Decomposing a goal into steps and milestones"
+  - id: structured-data-extraction
+    description: "Pulling fields from messy text into JSON / YAML"
+  - id: translation
+    description: "Translating natural language across languages"
+  - id: visual-reasoning
+    description: "Reasoning about images, diagrams, screenshots"
+  - id: agentic-tooling
+    description: "Driving tools end-to-end with self-correction"
+  - id: long-context
+    description: "Holding and reasoning over a very large input"
+  - id: fast-iteration
+    description: "Quick edits, small scope, latency-sensitive"
+  - id: factual-recall
+    description: "Stating verifiable facts without invention"
+  - id: math-reasoning
+    description: "Multi-step quantitative or symbolic problems"
+
+models:
+  claude-opus:
+    # Fill in 0-10 scores per use case based on your evaluation
+    scores: {}
+    notes: ""
+  claude-sonnet:
+    # Fill in 0-10 scores per use case based on your evaluation
+    scores: {}
+    notes: ""
+  claude-haiku:
+    # Fill in 0-10 scores per use case based on your evaluation
+    scores: {}
+    notes: ""
+  gpt-5:
+    # Fill in 0-10 scores per use case based on your evaluation
+    scores: {}
+    notes: ""
+  gemini-pro:
+    # Fill in 0-10 scores per use case based on your evaluation
+    scores: {}
+    notes: ""
+
+# Starter recommendations — replace with your own once you have evidence.
+recommendations:
+  creative-writing: claude-opus
+  code-generation: claude-sonnet
+  code-review: claude-opus
+  summarisation: claude-haiku
+  research: claude-opus
+  planning: claude-sonnet
+  structured-data-extraction: claude-haiku
+  translation: gpt-5
+  visual-reasoning: gemini-pro
+  agentic-tooling: claude-sonnet
+  long-context: claude-sonnet
+  fast-iteration: claude-haiku
+  factual-recall: gpt-5
+  math-reasoning: claude-opus
