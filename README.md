@@ -38,6 +38,8 @@ If you'd rather not run shell scripts, the [Getting Started guide](docs/getting-
 
 **A dashboard** — `dashboard/dashboard.html` is a single-file HTML/JS dashboard. The build script walks your vault, generates JSON, serves it over HTTP, and exposes mutation endpoints for moving cards between kanban columns, editing tasks, and updating the day board. Designed accessibly — the colour palette is red/green colour-blind safe by default.
 
+**A live day workspace** — the dashboard's Day tab is a configurable work assistant for active days, not just a static todo list. It keeps several live work slots visible at once so you can track which projects are in play, where you left each one, what the next action is, and what needs attention when you switch context. This is especially useful when you are moving between multiple projects in the same day and need a lightweight external memory of the current state.
+
 **A thinking pipeline** — the vault and dashboard treat concepts and projects as first-class objects. You can capture a half-formed idea as a concept, connect it to related notes, attach tasks to it, revisit it over time, and promote it into a project when it becomes concrete. That matters because many useful ideas do not arrive fully shaped. EV gives you a way to keep difficult problems alive, accumulate context around them, see how they relate to other work, and gradually turn them into practical solutions.
 
 **Setup and purge scripts** — `setup.sh` walks you through configuration. `purge-example-data.sh` clears the example content while preserving the structure, ready for your own data.
